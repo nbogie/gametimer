@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Game Timer</title>
+  <link rel="stylesheet" type="text/css" href="css/foundation.css" />
+  <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+  <script type="text/javascript" src="js/foundation.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="large-12 columns"><h1 align='center'>Game Timer</h1></div>
+  </div>
+  <form>
+    <div id='screenSetPlayers' class='screen row'>
+      <div id='playerListDiv' class="large-8 large-offset-2 columns end">
+        
+        <div class='row' >
+          <div class="small-3 columns">
+            <input id='playerColorInput' type='color'>
+          </div>
+          <div class="small-9 columns">
+            <a id="addPlayerButton" class='button hollow expanded'>Add Player</a>
+          </div>
+        </div>        
+        <div class='row'>
+          <ol id='playerList' class='no-bullet'>
+            
+          </ol>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+
+</body>
+</html>

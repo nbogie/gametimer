@@ -1,0 +1,12 @@
+.topicDisplay {
+  font-weight: bolder; }
+
+.impostorName {
+  font-weight: bold; }
+
+dialog {
+  height: 80%;
+  width: 80%;
+  position: absolute;
+  top: 7px;
+  left: 6px; }
