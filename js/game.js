@@ -11,6 +11,10 @@ function timerStepSize(){
   return 500;
 }
 
+function msToTimeString(ms){
+  return new Date(ms).toLocaleTimeString('en-US', { hour12: false, timeZone: 'UTC'});
+}
+
 function updateTimers(){
   var runningTimers = $('.timerRunning');
   var updateTimer = function(ix, elem){
@@ -18,7 +22,7 @@ function updateTimers(){
     var timeElapsed = parseInt(timer.attr("data-time-elapsed"));
     timeElapsed += timerStepSize();
     timer.attr("data-time-elapsed", timeElapsed);
-    timer.html(Math.round(timeElapsed/1000));
+    timer.html(msToTimeString(timeElapsed));
   }
   
   runningTimers.each(updateTimer);
@@ -26,7 +30,7 @@ function updateTimers(){
   $('.timerNeedsRedraw').each(function(ix, elem){
     var timer = $(elem);
     var timeElapsed = parseInt(timer.attr("data-time-elapsed"));
-    timer.html(Math.round(timeElapsed/1000));
+    timer.html(msToTimeString(timeElapsed));
     timer.removeClass("timerNeedsRedraw");
   });
 

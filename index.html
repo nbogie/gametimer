@@ -14,6 +14,10 @@
     .timerRunning {
       background: orange;
     }
+    .playerTime {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
     </style>
 </head>
 
@@ -44,16 +48,13 @@
 <ol>
   <li id='playerLiToClone' style="display:none">
     <div class='row'>
-      <div class='small-2 columns'>
-        <input type='text' class='playerNameInput' value='placeholder'/>
-      </div>
       <div class='small-1 columns colorDisplay' style='background: red'>
         <span>.</span>
       </div>
-      <div class='small-2 columns'>
-        <span class='playerTime stat'>0:00</span>
+      <div class='small-3 columns'>
+        <span class='playerTime'>0:00</span>
       </div>
-      <div class='button-group small-7 columns'>
+      <div class='button-group small-8 columns'>
           <a href='#' class='button startButton'
           onclick='startTimer(this);'>Start</a>
           <a href='#' class='button stopButton'
