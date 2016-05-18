@@ -66,6 +66,9 @@ function findParentTimer(elem){
 }
 
 function startTimer(elem){
+  //stop all of them
+  $(".timerRunning").removeClass("timerRunning");
+  //start this one
   var timerElem = findParentTimer(elem);
   $(timerElem).addClass("timerRunning");
 }
