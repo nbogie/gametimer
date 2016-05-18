@@ -12,7 +12,17 @@ function timerStepSize(){
 }
 
 function msToTimeString(ms){
-  return new Date(ms).toLocaleTimeString('en-US', { hour12: false, timeZone: 'UTC'});
+  var d = new Date(ms);
+  var s = d.getUTCSeconds();
+  var m = d.getUTCMinutes();
+  var h = d.getUTCHours();
+  var msOnly = d.getUTCMilliseconds();
+  function pad(n){
+    return ((n < 10) ? "0" : "") + n;
+  }
+  return ""+pad(h) + ":"+pad(m) + ":"+pad(s);
+  //some browsers will attach a timezone offset to the following
+  //return new Date(ms).toLocaleTimeString('en-US', { hour12: false, timeZone: 'UTC'});
 }
 
 function updateTimers(){
@@ -68,18 +78,17 @@ function resetTimer(elem){
 
 function addPlayer(opts){
   var c = $('#playerColorInput').val();
-  console.log("color picked: " + c);
   var cloned = $('#playerLiToClone').clone();
   
   cloned.removeAttr("id");
   cloned.removeAttr("style");
   
-  
   var cd = cloned.find(".colorDisplay");
   cd.attr("style", "background: "+c);
+
   var timerElem = cloned.find(".playerTime");
-  timerElem.attr("data-time-added", currentTimeMs());
   timerElem.attr("data-time-elapsed", 0);
   timerElem.toggle(".timer-running");
+
   cloned.appendTo('#playerList');
 }
