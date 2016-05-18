@@ -1,5 +1,8 @@
 "use strict";
 
+//TODO: Record the time-started, and update elapsed time based on that and the current time.
+//      Do not update incrementally with unreliable timers - they may be turned off
+
 $(document).ready(function(){
   $(document).foundation();
 
