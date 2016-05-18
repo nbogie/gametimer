@@ -94,4 +94,9 @@ function addPlayer(opts){
   timerElem.toggle(".timer-running");
 
   cloned.appendTo('#playerList');
+
+  //TODO: swipe right to remove player.  Use foundation Touch.js:
+  //  timerElem.spotSwipe().on('swipeleft', handleLeftSwipe);
+  // or use jquery mobile:
+  // http://demos.jquerymobile.com/1.4.5/swipe-list/
 }
