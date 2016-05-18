@@ -10,6 +10,11 @@
   <script type="text/javascript" src="js/foundation.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
+    <style>
+    .timerRunning {
+      background: orange;
+    }
+    </style>
 </head>
 
 <body>
@@ -25,17 +30,43 @@
             <input id='playerColorInput' type='color'>
           </div>
           <div class="small-9 columns">
-            <a id="addPlayerButton" class='button hollow expanded'>Add Player</a>
+            <a id="addPlayerButton" class='button expanded'>Add Player</a>
           </div>
         </div>        
         <div class='row'>
           <ol id='playerList' class='no-bullet'>
-            
           </ol>
         </div>
       </div>
     </div>
   </form>
+
+<ol>
+  <li id='playerLiToClone' style="display:none">
+    <div class='row'>
+      <div class='small-2 columns'>
+        <input type='text' class='playerNameInput' value='placeholder'/>
+      </div>
+      <div class='small-1 columns colorDisplay' style='background: red'>
+        <span>.</span>
+      </div>
+      <div class='small-2 columns'>
+        <span class='playerTime stat'>0:00</span>
+      </div>
+      <div class='button-group small-7 columns'>
+          <a href='#' class='button startButton'
+          onclick='startTimer(this);'>Start</a>
+          <a href='#' class='button stopButton'
+          onclick='stopTimer(this);'>Stop</a>
+          <a href='#' class='button resetButton'
+          onclick='resetTimer(this);'>Reset</a>
+          <button type='button' 
+            class='button deletePlayer alert' 
+            onclick='deletePlayer(this);'>Delete</button>
+      </div>
+    </div>
+  </li>
+</ol>
 
 
 

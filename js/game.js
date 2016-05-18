@@ -4,8 +4,33 @@ $(document).ready(function(){
   $(document).foundation();
 
   $('#addPlayerButton').bind('click', addPlayer);
-//      topic: $('#topicInputModal #topicInput').val(), 
+  setInterval(updateTimers, timerStepSize());
 });
+
+function timerStepSize(){
+  return 500;
+}
+
+function updateTimers(){
+  var runningTimers = $('.timerRunning');
+  var updateTimer = function(ix, elem){
+    var timer = $(elem);
+    var timeElapsed = parseInt(timer.attr("data-time-elapsed"));
+    timeElapsed += timerStepSize();
+    timer.attr("data-time-elapsed", timeElapsed);
+    timer.html(Math.round(timeElapsed/1000));
+  }
+  
+  runningTimers.each(updateTimer);
+
+  $('.timerNeedsRedraw').each(function(ix, elem){
+    var timer = $(elem);
+    var timeElapsed = parseInt(timer.attr("data-time-elapsed"));
+    timer.html(Math.round(timeElapsed/1000));
+    timer.removeClass("timerNeedsRedraw");
+  });
+
+}
 
 function deletePlayer(obj){
   $(obj).parent().parent().parent().remove();
@@ -15,24 +40,42 @@ function numPlayers(){
     return $('#playerList li').size();
 }
 
+function currentTimeMs() {
+  return (new Date()).getTime();
+};
+
+function findParentTimer(elem){
+  return $(elem).parent().parent().find('.playerTime');
+}
+
+function startTimer(elem){
+  var timerElem = findParentTimer(elem);
+  $(timerElem).addClass("timerRunning");
+}
+function stopTimer(elem){
+  var timerElem = findParentTimer(elem);
+  $(timerElem).removeClass("timerRunning");
+}
+function resetTimer(elem){
+  var timerElem = findParentTimer(elem);
+  $(timerElem).attr("data-time-elapsed", 0);
+  $(timerElem).addClass("timerNeedsRedraw");
+}
+
 function addPlayer(opts){
   var c = $('#playerColorInput').val();
   console.log("color picked: " + c);
-  $("<li><div class='row'>"+
-      "<div class='small-2 columns'>"+
-        "<input type='text' class='playerNameInput' value='"+c+"'/>"+
-      "</div>"+
-      "<div class='small-2 columns' style='background: "+c+"'>"+
-        "<span>.</span>"+
-      "</div>"+
-      "<div class='small-2 columns'>"+
-        "<span class='playerTime'>0:00</span>"+
-      "</div>"+
-      "<div class='button-group small-4 columns'>"+
-          "<a href='#' class='button startButton'>Start</a>"+
-          "<a href='#' class='button stopButton'>Stop</a>"+
-          "<a href='#' class='button resetButton'>Reset</a>"+
-          "<button type='button' class='button deletePlayer alert' onclick='deletePlayer(this);'>Delete</button>"+
-      "</div>"+
-      "</div></li>").appendTo('#playerList');
+  var cloned = $('#playerLiToClone').clone();
+  
+  cloned.removeAttr("id");
+  cloned.removeAttr("style");
+  
+  
+  var cd = cloned.find(".colorDisplay");
+  cd.attr("style", "background: "+c);
+  var timerElem = cloned.find(".playerTime");
+  timerElem.attr("data-time-added", currentTimeMs());
+  timerElem.attr("data-time-elapsed", 0);
+  timerElem.toggle(".timer-running");
+  cloned.appendTo('#playerList');
 }
