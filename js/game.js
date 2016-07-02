@@ -3,6 +3,8 @@
 //TODO: Record the time-started, and update elapsed time based on that and the current time.
 //      Do not update incrementally with unreliable timers - they may be turned off
 
+//TODO: locally store player names immediately on change, so that mobile browser doesn't lose them on nav away or close browser app
+
 $(document).ready(function(){
   $(document).foundation();
 
